@@ -14,24 +14,25 @@ public class Main {
         ArrayList<Human> Heroes = new ArrayList<>();
 
 
+            while (Heroes.size() < 10) {
 
+                switch (new Random().nextInt(0, 6)) {
+                    case 0:
+                        Heroes.add(new Crossbowman(getName()));
+                    case 1:
+                        Heroes.add(new Monk(getName()));
+                    case 2:
+                        Heroes.add(new Peasant(getName()));
+                    case 3:
+                        Heroes.add(new Sniper(getName()));
+                    case 4:
+                        Heroes.add(new Robber(getName()));
+                    case 5:
+                        Heroes.add(new Sorcerer(getName()));
+                    case 6:
+                        Heroes.add(new Spearman(getName()));
 
-            switch (new Random().nextInt(0, 6)) {
-                case 0:
-                    Heroes.add(new Crossbowman(getName()));
-                case 1:
-                    Heroes.add(new Monk(getName()));
-                case 2:
-                    Heroes.add(new Peasant(getName()));
-                case 3:
-                    Heroes.add(new Sniper(getName()));
-                case 4:
-                    Heroes.add(new Robber(getName()));
-                case 5:
-                    Heroes.add(new Sorcerer(getName()));
-                case 6:
-                    Heroes.add(new Spearman(getName()));
-
+                }
             }
 
                 System.out.println(Heroes);

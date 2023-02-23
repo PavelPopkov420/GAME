@@ -5,7 +5,11 @@ public class Robber extends infantry{
         super(name, 20, 30, 100, 10, 12);
     }
 
+    public String toString(){
+        return "Я разбойник " + name;
+    }
+
     public String getInfo(){
-        return "Я разбойник" + name;
+        return "";
     }
 }
