@@ -1,10 +1,9 @@
 package units;
 
-public abstract class Human {
+public abstract class Human implements InGameInterface{
     protected  String name;
-    protected int att;
-    protected int def;
-    protected int hp;
+    protected int att, def, hp;
+
     public Human(String name, int att, int def, int hp){
         this.name = name;
         this.att = att;
@@ -13,5 +12,15 @@ public abstract class Human {
     }
 
     protected Human() {
+    }
+
+    @Override
+    public void step() {
+
+    }
+
+    @Override
+    public String getInfo() {
+        return "null";
     }
 }

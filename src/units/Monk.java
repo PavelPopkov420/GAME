@@ -1,7 +1,15 @@
 package units;
 
-public class Monk extends Human {
-    public Monk(String name, int att, int def, int hp) {
-        super(name, att, def, hp);
+public class Monk extends Magi{
+
+    public Monk(String name) {
+        super(name, 5,30,100,10,15,10);
+    }
+
+    public void step() {
+
+    }
+    public String getInfo(){
+        return "Я монах" + name;
     }
 }

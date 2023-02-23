@@ -1,6 +1,13 @@
 package units;
-public class Sniper extends Human {
-    public Sniper(String name, int att, int def, int hp) {
-        super(name, att, def, hp);
+public class Sniper extends Arrows {
+
+    public Sniper(String name) {
+        super(name, 20,20,100,10,12);
+    }
+    public void step() {
+
+    }
+    public String getInfo(){
+        return "Я снайпер" + name;
     }
 }
