@@ -14,7 +14,7 @@ public class Main {
         ArrayList<Human> Heroes = new ArrayList<>();
 
 
-        while (Heroes.size() < 10) {
+
 
             switch (new Random().nextInt(0, 6)) {
                 case 0:
@@ -33,8 +33,8 @@ public class Main {
                     Heroes.add(new Spearman(getName()));
 
             }
-        }
 
+                System.out.println(Heroes);
     }
 
 }
