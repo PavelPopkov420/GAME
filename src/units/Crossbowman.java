@@ -3,7 +3,7 @@ package units;
 public class Crossbowman extends Arrows{
 
     public Crossbowman(String name) {
-        super(name, 25,15,120,20,30);
+        super(name, 6, 3, 10, 16, 4, 2, 3);
     }
 
     public String toString(){

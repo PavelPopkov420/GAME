@@ -1,9 +1,13 @@
 package units;
 
-public class Peasant extends infantry{
+public class Peasant extends Warriors {
 
     public Peasant(String name) {
-        super(name, 9,13,90,12,12);
+        super(name, 1, 1, 1, 1, 1, 3);
+    }
+
+    public Peasant(int delivery) {
+        super(1);
     }
 
     public String toString(){

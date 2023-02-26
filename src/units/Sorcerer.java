@@ -3,8 +3,9 @@ package units;
 public class Sorcerer extends Magi {
 
     public Sorcerer(String name) {
-        super(name, 40,5,90,8,10,0);
+        super(name, 17, 12, 30, 9, -5, -5, 1);
     }
+
     public String toString(){
         return "Я колдун " + name;
     }

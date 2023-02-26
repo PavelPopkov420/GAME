@@ -1,42 +1,82 @@
 import units.*;
 
 import java.util.ArrayList;
+import java.util.Comparator;
 import java.util.Random;
 
 public class Main {
     public static String getName(){
-        return String.valueOf(Names.values()[new Random().nextInt(Names.values().length)]);
-    }
-    public static void main(String[] args) {
+
+    return String.valueOf(Names.values()[new Random().nextInt(Names.values().length)]);}
+    public static void main(String... args) {
 
 
-
-        ArrayList<Human> Heroes = new ArrayList<>();
-
-
-            while (Heroes.size() < 10) {
-
-                switch (new Random().nextInt(0, 6)) {
+            ArrayList<Human> DarkTeam = new ArrayList<>();
+            for (int i = 0; i < 10; i++  )
+            {
+                switch (new Random().nextInt(0, 4)) {
                     case 0:
-                        Heroes.add(new Crossbowman(getName()));
-                    case 1:
-                        Heroes.add(new Monk(getName()));
-                    case 2:
-                        Heroes.add(new Peasant(getName()));
-                    case 3:
-                        Heroes.add(new Sniper(getName()));
-                    case 4:
-                        Heroes.add(new Robber(getName()));
-                    case 5:
-                        Heroes.add(new Sorcerer(getName()));
-                    case 6:
-                        Heroes.add(new Spearman(getName()));
+                        DarkTeam.add(new Peasant(getName()));
+                        break;
 
+                    case 1:
+                        DarkTeam.add(new Robber(getName()));
+                        break;
+
+                    case 2:
+                        DarkTeam.add(new Sniper(getName()));
+                        break;
+
+                    case 3:
+                        DarkTeam.add(new Sorcerer(getName()));
                 }
             }
+            DarkTeam.sort(new Comparator<Human>() {
+                @Override
+                public int compare(Human o1, Human o2) {
+                    return 0;
+                }
+            });
 
-                System.out.println(Heroes);
+            ArrayList<Human> teamOfLight = new ArrayList<>();
+
+            for (int i = 0; i < 10; i++  ) {
+
+                switch (new Random().nextInt(0, 4)) {
+                    case 0:
+                        teamOfLight.add(new Peasant(getName()));
+                        break;
+                    case 1:
+                        teamOfLight.add(new Spearman(getName()));
+                        break;
+                    case 2:
+                        teamOfLight.add(new Crossbowman(getName()));
+                        break;
+                    case 3:
+                        teamOfLight.add(new Monk(getName()));
+                        break;
+
+
+
+                }
+
+            }
+            teamOfLight.sort(new Comparator<Human>() {
+                @Override
+                public int compare(Human o1, Human o2) {
+                    return 0;
+                }
+            });
+
+            System.out.println(DarkTeam);
+            System.out.print("");
+            System.out.println(teamOfLight);
+            System.out.print("");
+
+
+        }
     }
 
-}
+
+
 

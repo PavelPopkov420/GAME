@@ -3,7 +3,7 @@ package units;
 public class Monk extends Magi{
 
     public Monk(String name) {
-        super(name, 5,30,100,10,15,10);
+        super(name, 12, 7, 30, 5, -4, -4, 1);
     }
 
     public String toString(){

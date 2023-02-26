@@ -1,9 +1,9 @@
 package units;
 
-public class Spearman extends infantry {
+public class Spearman extends Warriors {
 
     public Spearman(String name) {
-        super(name, 20,30,120,8,13);
+        super(name, 4, 5, 10, 3, 1, 4);
     }
 
     public String toString(){
