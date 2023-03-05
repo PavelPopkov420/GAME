@@ -3,11 +3,11 @@ package units;
 public class Spearman extends Warriors {
 
     public Spearman(String name) {
-        super(name, 4, 5, 10, 3, 1, 4);
+        super(name, 4, 5,10, 10, 3, 1, 4, 0,0);
     }
 
     public String toString(){
-        return "Я копейщик " + name;
+        return "Я копейщик " + name ;
     }
     @Override
     public void step() {

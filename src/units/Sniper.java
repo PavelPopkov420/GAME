@@ -1,7 +1,7 @@
 package units;
 public class Sniper extends Arrows {
     public Sniper(String name) {
-        super(name, 12, 10, 15, 32, 9, 8, 10);
+        super(name, 12, 10,15, 15, 32, 9, 8, 0,0,10);
     }
 
     public String toString(){
