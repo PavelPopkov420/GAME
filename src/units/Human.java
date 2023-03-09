@@ -6,7 +6,7 @@ public abstract class Human implements InGameInterface{
     protected  String name;
     protected int att, def, MaxHp, speed, MinDamage, maxDamage;
     float hp;
-    protected  Vector2D coords;
+    protected Vector2D coords;
     protected String state;
 
     public Human(String name, int att, int def,float hp, int MaxHp, int speed,int MinDamage,  int maxDamage, int PosX, int PosY){
@@ -45,7 +45,7 @@ public abstract class Human implements InGameInterface{
             }
             return index;
         }
-    protected void getDamage(float damage){
+    protected void getDamage(int damage){
         this.hp -= damage;
         if(hp <= 0) {
             hp = 0;

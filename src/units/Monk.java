@@ -2,12 +2,13 @@ package units;
 
 public class Monk extends Magi{
 
-    public Monk(String name) {
-        super(name, 12, 7, 30,30, 5, -4, -4, 1, 0,0);
+    public Monk(String name, Vector2D coords)
+    {
+        super(name, 12, 7, 30,30, 5, -4, -4, 1, coords.PosX, coords.PosY);
     }
 
     public String toString(){
-        return "Я монах " + name;
+        return "Монах " +name + "|" + "HP" + hp + " PosX " + coords.PosX + " PosY "+ coords.PosY;
     }
 
     @Override
@@ -15,6 +16,6 @@ public class Monk extends Magi{
 
     }
     public String getInfo(){
-        return "";
+        return "" ;
     }
 }
