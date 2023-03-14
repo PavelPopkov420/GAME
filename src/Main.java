@@ -7,13 +7,21 @@ import java.util.Scanner;
 
 public class Main {
     static final int UNITS = 10;
+    public static ArrayList<Human> allTeam = new ArrayList<>();
+    public static ArrayList<Human> teamOfLight = new ArrayList<>();
+    public static ArrayList<Human> DarkTeam = new ArrayList<>();
     public static String getName() {
         return String.valueOf(Names.values()[new Random().nextInt(Names.values().length)]);}
 
     public static void main(String... args) {
+
+        Scanner user_input = new Scanner(System.in);
+        System.out.print("Press Enter to begin.");
+        user_input.nextLine();
+
         ArrayList<Human> DarkTeam = new ArrayList<>();
         ArrayList<Human> teamOfLight = new ArrayList<>();
-        Scanner user_input = new Scanner(System.in);
+
         ArrayList<Human> allTeam = new ArrayList<>();
         CreateTeam(DarkTeam, 0, 1);
         CreateTeam(teamOfLight, 3, 10);

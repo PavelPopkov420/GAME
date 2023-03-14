@@ -6,8 +6,18 @@ public abstract class Human implements InGameInterface{
     protected  String name;
     protected int att, def, MaxHp, speed, MinDamage, maxDamage;
     float hp;
-    protected Vector2D coords;
+    protected static Vector2D coords;
     protected String state;
+
+    @Override
+    public String toString() {
+        return name +
+                " H:" + Math.round(hp) +
+                " D:" + def +
+                " A:" + att +
+                " Dmg:" + Math.round(Math.abs((MinDamage+maxDamage)/2)) +
+                " " + state;
+    }
 
     public Human(String name, int att, int def,float hp, int MaxHp, int speed,int MinDamage,  int maxDamage, int PosX, int PosY){
         this.name = name;
@@ -21,6 +31,8 @@ public abstract class Human implements InGameInterface{
         coords = new Vector2D(PosX, PosY);
         state = "STAND";
     }
+
+    public static int[] getCoords() {return new int[]{coords.PosX, coords.PosY};}
 
     protected Human() {
 
