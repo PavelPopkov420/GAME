@@ -7,6 +7,9 @@ public class Vector2D {
         this.PosX = PosX;
         this.PosY = PosY;
     }
+    protected boolean isLeft(Vector2D opponent){
+        return PosX < opponent.PosX;
+    }
     protected double getDistance(Vector2D opponent){
 
         return Math.sqrt(Math.pow(PosX - opponent.PosX, 2) +  Math.pow(PosY - opponent.PosY,2));

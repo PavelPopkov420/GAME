@@ -9,6 +9,8 @@ public abstract class Human implements InGameInterface{
     protected static Vector2D coords;
     protected String state;
 
+    protected static int heroCnt;
+
     @Override
     public String toString() {
         return name +
@@ -18,6 +20,8 @@ public abstract class Human implements InGameInterface{
                 " Dmg:" + Math.round(Math.abs((MinDamage+maxDamage)/2)) +
                 " " + state;
     }
+
+    public static int[] getCoords() {return new int[]{coords.PosX, coords.PosY};}
 
     public Human(String name, int att, int def,float hp, int MaxHp, int speed,int MinDamage,  int maxDamage, int PosX, int PosY){
         this.name = name;
@@ -30,27 +34,23 @@ public abstract class Human implements InGameInterface{
         this.hp = hp;
         coords = new Vector2D(PosX, PosY);
         state = "STAND";
+        heroCnt++;
     }
 
-    public static int[] getCoords() {return new int[]{coords.PosX, coords.PosY};}
 
-    protected Human() {
-
-    }
-
-    public int getSpeed(){ return this.speed;}
-    public int getHp(){return  this.MaxHp;}
+    public int getSpeed(){ return speed;}
+    public int getHp(){return MaxHp;}
 
 
 
     @Override
     public void step(ArrayList<Human> team1, ArrayList<Human> team2) {}
     protected int findNearest(ArrayList<Human> Team){
-            double min = 100;
+            double min = Double.MAX_VALUE;
             int index = 0;
             for (int i = 0; i < Team.size(); i++)
             {
-                if(min > coords.getDistance(Team.get(i).coords)){
+                if(min > coords.getDistance(Team.get(i).coords) && !Team.get(i).state.equals("Die")){
                     index = 1;
                     min = coords.getDistance(Team.get(i).coords);
                 }
@@ -65,9 +65,11 @@ public abstract class Human implements InGameInterface{
         if(hp > MaxHp) hp = MaxHp;
     }
 
-
     @Override
-    public String getInfo() {
-        return "null";
+    public StringBuilder getInfo() {
+        return new StringBuilder("");
     }
+
+
+
 }

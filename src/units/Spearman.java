@@ -8,15 +8,17 @@ public class Spearman extends Warriors {
     }
 
     public String toString(){
-        return "Копейщик " +name + "|" + "HP" + hp + " PosX " + coords.PosX + " PosY "+ coords.PosY ;
+        return "КОпейщик "+name + "|" + "HP" + hp + " PosX " + coords.PosX + " PosY "+ coords.PosY;
     }
-    @Override
-    public void step() {
 
-    }
     @Override
-    public String getInfo(){
-        return "" ;
+    public StringBuilder getInfo() {
+        StringBuilder builder = new StringBuilder();
+        return builder.append("Копейщик:\t").append(Spearman.super.name)
+                .append("\t| ATK:\t").append(Spearman.super.att)
+                .append("\t| HP:\t").append(Spearman.super.hp)
+                .append(" \t|\t\t\t|").append("\t| (X.Y) : ").append(Spearman.super.coords.PosX).append(".").append(Spearman.super.coords.PosY);
     }
+
 }
 

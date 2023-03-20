@@ -18,7 +18,7 @@ public abstract class Arrows extends Human{
         int damage = (victim.def - att) > 0 ? MinDamage :(victim.def - att) < 0 ? maxDamage : (MinDamage + maxDamage)/2;
         victim.getDamage(damage);
         for (Human human:team1){
-            if(human.getInfo().equals("Фермер") && human.state.equals("STAND")){
+            if(human.getInfo().toString().split(":")[0].equals("Фермер") && human.state.equals("Stand")){
                 human.state = "Busy";
                 return;
             }
@@ -26,5 +26,14 @@ public abstract class Arrows extends Human{
         shots--;
         }
 
+    public String toString() {
+        return name +
+                " H:" + Math.round(hp) +
+                " D:" + def +
+                " A:" + att +
+                " Dmg:" + Math.round(Math.abs((MinDamage+maxDamage)/2)) +
+                " Shots:" + shots + " " +
+                state;
+    }
 
 }

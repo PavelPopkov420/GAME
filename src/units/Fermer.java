@@ -6,9 +6,13 @@ public abstract class Fermer extends Human{
 
     int delivery;
 
-    public Fermer(String name, int att, int def,float hp, int MaxHp, int speed, int damage, int maxDamage,int PosX, int PosY) {
-        super(name, att, def, hp, MaxHp, speed, damage, maxDamage, PosX, PosY);
-        this.delivery = delivery;
+    public Fermer(String name, Vector2D coords) {
+        super(name, 1, 1, 50, 1, 1, 1, 1, coords.PosX, coords.PosY);
+        this.delivery = 1;
+    }
+
+    public String toString(){
+        return "Фермер "+name + "|" + "HP" + hp + " PosX " + coords.PosX + " PosY "+ coords.PosY;
     }
 
     public void step(ArrayList<Human> team1, ArrayList<Human> team2){
@@ -16,8 +20,13 @@ public abstract class Fermer extends Human{
 
     }
 
-    public String getInfo() {
-        return "Фермер";
+    public StringBuilder getInfo() {
+        StringBuilder builder = new StringBuilder();
+        return builder.append("Фермер: \t").append(Fermer.super.name)
+                .append("\t| ATK:\t").append(Fermer.super.att)
+                .append("\t| HP:\t").append(Fermer.super.hp)
+                .append(" \t| Delivery: ").append(Fermer.this.delivery)
+                .append("\t|").append("\t| (X.Y) : ").append(Fermer.super.coords.PosX).append(".").append(Fermer.super.coords.PosY);
     }
 }
 

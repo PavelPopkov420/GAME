@@ -9,7 +9,5 @@ public abstract  class Warriors extends Human{
 
     }
 
-
-    public abstract void step();
 }
 

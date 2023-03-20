@@ -9,13 +9,16 @@ public class Robber extends Warriors {
     public String toString(){
         return "Разбойник "+name + "|" + "HP" + hp + " PosX " + coords.PosX + " PosY "+ coords.PosY;
     }
-
-    public String getInfo(){
-        return "";
+    public void steal(int disguise, Arrows Shooter) {
     }
 
     @Override
-    public void step() {
+    public StringBuilder getInfo() {
+        StringBuilder builder = new StringBuilder();
+        return builder.append("Бандит: \t").append(Robber.super.name)
+                .append("\t| ATK:\t").append(Robber.super.att)
+                .append("\t| HP:\t").append(Robber.super.hp)
+                .append(" \t|\t\t\t|").append("\t| (X.Y) : ").append(Robber.super.coords.PosX).append(".").append(Robber.super.coords.PosY);
+    }
 
     }
-}
