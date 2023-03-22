@@ -3,68 +3,71 @@ package units;
 import java.util.ArrayList;
 
 public abstract class Human implements InGameInterface{
-    protected  String name;
-    protected int att, def, MaxHp, speed, MinDamage, maxDamage;
-    float hp;
+    protected String name;
+    protected float hp;
+    protected int maxHp;
+    protected int attack;
+    protected int damageMin;
+    protected int damageMax;
+    protected int defense;
+    protected int speed;
     protected static Vector2D coords;
     protected String state;
-
     protected static int heroCnt;
 
     @Override
     public String toString() {
         return name +
                 " H:" + Math.round(hp) +
-                " D:" + def +
-                " A:" + att +
-                " Dmg:" + Math.round(Math.abs((MinDamage+maxDamage)/2)) +
+                " D:" + defense +
+                " A:" + attack +
+                " Dmg:" + Math.round(Math.abs((damageMin+damageMax)/2)) +
                 " " + state;
     }
 
-    public static int[] getCoords() {return new int[]{coords.PosX, coords.PosY};}
+    public static int[] getCoords() {return new int[]{coords.posX, coords.posY};}
 
-    public Human(String name, int att, int def,float hp, int MaxHp, int speed,int MinDamage,  int maxDamage, int PosX, int PosY){
+    protected Human(String name, float hp, int maxHp, int attack, int damageMin,
+                    int damageMax, int defense, int speed, int posX, int posY) {
         this.name = name;
-        this.att = att;
-        this.def = def;
-        this.MaxHp = MaxHp;
-        this.speed = speed;
-        this.MinDamage = MinDamage;
-        this.maxDamage = maxDamage;
         this.hp = hp;
-        coords = new Vector2D(PosX, PosY);
-        state = "STAND";
+        this.maxHp = maxHp;
+        this.attack = attack;
+        this.damageMin = damageMin;
+        this.damageMax = damageMax;
+        this.defense = defense;
+        this.speed = speed;
+        coords = new Vector2D(posX, posY);
+        state = "Stand";
         heroCnt++;
     }
 
-
-    public int getSpeed(){ return speed;}
-    public int getHp(){return MaxHp;}
-
-
-
+    public int getSpeed() { return speed;}
+    public float getHp() { return hp;}
     @Override
-    public void step(ArrayList<Human> team1, ArrayList<Human> team2) {}
-    protected int findNearest(ArrayList<Human> Team){
-            double min = Double.MAX_VALUE;
-            int index = 0;
-            for (int i = 0; i < Team.size(); i++)
-            {
-                if(min > coords.getDistance(Team.get(i).coords) && !Team.get(i).state.equals("Die")){
-                    index = 1;
-                    min = coords.getDistance(Team.get(i).coords);
-                }
+    public boolean step(ArrayList<Human> team1, ArrayList<Human> team2) {
+        return false;
+    }
+    public int findNearest(ArrayList<Human> team){
+        int index = 0;
+        double min = Double.MAX_VALUE;
+        for (int i = 0; i < team.size(); i++) {
+            if(min > coords.getDistance(team.get(i).coords) && !team.get(i).state.equals("Die")) {
+                index = i;
+                min = coords.getDistance(team.get(i).coords);
             }
-            return index;
         }
-    protected void getDamage(int damage){
-        this.hp -= damage;
-        if(hp <= 0) {
-            hp = 0;
-            state = "Die";}
-        if(hp > MaxHp) hp = MaxHp;
+        return index;
     }
 
+    protected void getDamage(float damage){
+        this.hp -= damage;
+        if (hp <= 0) {
+            hp = 0;
+            state = "Die";
+        }
+        if (hp > maxHp) hp = maxHp;
+    }
     @Override
     public StringBuilder getInfo() {
         return new StringBuilder("");

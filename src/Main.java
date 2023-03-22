@@ -11,42 +11,47 @@ public class Main {
     public static ArrayList<Human> teamOfLight = new ArrayList<>();
     public static ArrayList<Human> DarkTeam = new ArrayList<>();
 
+
+
     public static void main(String... args) {
 
-        Scanner user_input = new Scanner(System.in);
-        System.out.print("Press Enter to begin.");
-        user_input.nextLine();
-
-        ArrayList<Human> DarkTeam = new ArrayList<>();
-        ArrayList<Human> teamOfLight = new ArrayList<>();
-
-        ArrayList<Human> allTeam = new ArrayList<>();
-        CreateTeam(teamOfLight, 0, 1);
-        CreateTeam(DarkTeam, 3, 10);
-        allTeam.addAll(teamOfLight);
-        allTeam.addAll(DarkTeam);
-        sortTeam(allTeam);
-
-
-
-
-        while (true){
-            View.view();
+        try (Scanner user_input = new Scanner(System.in)) {
+            System.out.print("Press Enter to begin.");
             user_input.nextLine();
-        for (Human human: allTeam) {
-            if (teamOfLight.contains(human)) human.step(teamOfLight, DarkTeam);
-            else human.step(DarkTeam, teamOfLight);
+            CreateTeam(teamOfLight, 0, 1);
+            CreateTeam(DarkTeam, 3, 10);
+            allTeam.addAll(teamOfLight);
+            allTeam.addAll(DarkTeam);
+            sortTeam(allTeam);
+
+            boolean a = true;
+            int countBlue = 0;
+            int countGreen = 0;
+            while (a) {
+                View.view();
+                user_input.nextLine();
+                countBlue = 0;
+                countGreen = 0;
+                for (Human human : allTeam) {
+                    if (teamOfLight.contains(human)) {
+                        if (human.step(teamOfLight, DarkTeam))
+                            countBlue++;
+                    } else {
+                        if ((human.step(DarkTeam, teamOfLight)))
+                            countGreen++;
+                    };
+                }
+                if (countBlue == UNITS || countGreen == UNITS)
+                    a = false;
+            }
+            if (countBlue == UNITS)
+                System.out.print("greenTeam wins");
+            else {
+                System.out.print("blueTeam wins");
+            }
+        }
         }
 
-        }
-
-
-
-
-
-
-
-    }
     static void CreateTeam (ArrayList Team, int offset, int PosY) {
 
         for (int i = 0; i < UNITS; i++) {
@@ -55,7 +60,7 @@ public class Main {
 
             switch (rnd) {
                 case 0:
-                    Team.add(new Robber(getName(), new Vector2D(i+1, PosY)));
+                    Team.add(new Bandit(getName(), new Vector2D(i+1, PosY)));
                     break;
                 case 1:
                     Team.add(new Sniper(getName(), new Vector2D(i+1, PosY)));
@@ -82,12 +87,14 @@ public class Main {
 
     }
 
-    static void sortTeam (ArrayList<Human> team){
+    static void sortTeam(ArrayList<Human> team) {
         team.sort(new Comparator<Human>() {
             @Override
             public int compare(Human t0, Human t1) {
-                if (t1.getSpeed() == t0.getSpeed()) return (int) (t1.getHp() - t0.getHp());
-                else  return (int) (t1.getSpeed() - t0.getSpeed());
+                if (t1.getSpeed() == t0.getSpeed())
+                    return (int) (t1.getHp() - t0.getHp());
+                else
+                    return (int) (t1.getSpeed() - t0.getSpeed());
             }
         });
     }

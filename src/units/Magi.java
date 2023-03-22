@@ -4,18 +4,24 @@ import java.util.ArrayList;
 
 public  abstract  class Magi extends Human {
 
-    int magic;
-    public Magi(String name, int att, int def,float hp, int MaxHp, int speed, int damage, int maxDamage, int magic, int PosX, int PosY) {
-        super(name, att, def,hp, MaxHp, speed, damage, maxDamage, PosX, PosY);
-        this.magic = magic;
-    }
-    public void step(ArrayList<Human> team1, ArrayList<Human> team2) {
-        for (Human human : team1) {
-            if (human.hp < human.MaxHp & !human.state.equals("Die")) {
-                human.getDamage(maxDamage);
-                return;
+    protected int mana;
+    protected int maxMana;
+
+    @Override
+    public boolean step(ArrayList<Human> team1, ArrayList<Human> team2) {
+        for (Human human: team1) {
+            if (human.hp < human.maxHp & !human.state.equals("Die")) {
+                human.getDamage(damageMax);
+                return false;
             }
         }
+        return false;
+    }
 
+    public Magi(String name, float hp, int maxHp, int attack, int damageMin, int damageMax, int defense,
+               int speed, int mana, int maxMana, int posX, int posY) {
+        super(name, hp, maxHp, attack, damageMin, damageMax, defense, speed, posX, posY);
+        this.mana = mana;
+        this.maxMana = maxMana;
     }
 }
